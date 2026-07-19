@@ -1,0 +1,250 @@
+@import "tailwindcss";
+
+:root {
+  /* Light ramp — soft parchment + warm stone, alternated section to section.
+     --linen is kept as a variable name for compatibility but now holds the
+     brief's "cream text" value: it is light TEXT/borders on dark sections,
+     not a background. Backgrounds use --parchment / --stone. */
+  --linen: #f3eee7;
+  --parchment: #e9e2d8;
+  --stone: #d8cfc3;
+  --stone-deep: #c3b7a6;
+  --ink-muted: #5c4f42;
+  --ink: #2a1d16;
+
+  /* Dark ramp — charcoal (footer only) + walnut + umber, alternated the same way. */
+  --charcoal: #171513;
+  --walnut: #2a1d16;
+  --umber: #3a281e;
+  --ink-deep: #171513;
+  --linen-muted: #c7bba9;
+
+  /* Caramel — the warm mid-brown register (sections that used to be "light"
+     now sit here, with cream text, matching a golden-lit-room reference
+     mood). Deliberately dark enough that cream body text clears 4.5:1. */
+  --caramel: #805f3f;
+  --caramel-deep: #6a4d33;
+
+  /* Signature accent — bronze, anchored to the brand mark's lamplight. Rationed to <10% of any view. */
+  --amber: #a98452;
+  --amber-deep: #86663f;
+
+  --section-padding: clamp(3.75rem, 7.5vw, 7.5rem);
+  --content-gutter: clamp(1.5rem, 5vw, 4rem);
+
+  /* z-index scale */
+  --z-nav: 20;
+  --z-overlay: 40;
+}
+
+@theme inline {
+  --color-linen: var(--linen);
+  --color-parchment: var(--parchment);
+  --color-stone: var(--stone);
+  --color-stone-deep: var(--stone-deep);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink: var(--ink);
+  --color-ink-deep: var(--ink-deep);
+  --color-charcoal: var(--charcoal);
+  --color-walnut: var(--walnut);
+  --color-umber: var(--umber);
+  --color-linen-muted: var(--linen-muted);
+  --color-caramel: var(--caramel);
+  --color-caramel-deep: var(--caramel-deep);
+  --color-amber: var(--amber);
+  --color-amber-deep: var(--amber-deep);
+  --font-display: var(--font-instrument-serif);
+  --font-body: var(--font-inter);
+}
+
+body {
+  background: var(--caramel);
+  color: var(--linen);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-linen);
+}
+
+.btn-outline {
+  border: 1px solid var(--linen);
+  color: var(--linen);
+  transition:
+    background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-outline:hover {
+  background-color: var(--linen);
+  color: var(--ink);
+}
+
+.btn-outline-ink {
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  transition:
+    background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-outline-ink:hover {
+  background-color: var(--ink);
+  color: var(--linen);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-outline,
+  .btn-outline-ink {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* The Ember Rule: amber never fills a large surface. It marks a threshold —
+   the lamp in the logo, a hairline rule, a hover state. Everywhere else stays neutral. */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.2em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-underline:hover::after {
+  background: var(--amber);
+}
+
+.rule-amber {
+  width: 2.5rem;
+  height: 1px;
+  background: var(--amber);
+}
+
+/*
+ * Ambient section atmosphere: a restrained vignette (light sections only)
+ * plus a faint bronze glow (every section), drifting almost imperceptibly.
+ * Animates `transform` on a pseudo-element (GPU-composited) rather than
+ * background-position, so it stays cheap on mobile. The section itself must
+ * be `position: relative` + `overflow-hidden`; content must be a positioned
+ * element (Reveal already is) so it paints above this layer.
+ */
+.section-glow {
+  position: relative;
+}
+
+.section-glow::before {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  pointer-events: none;
+  animation: section-drift 24s ease-in-out infinite;
+  will-change: transform;
+}
+
+.section-glow--light::before {
+  background:
+    radial-gradient(30% 36% at 50% 34%, rgba(169, 132, 82, 0.16), transparent 70%),
+    radial-gradient(130% 95% at 50% 50%, transparent 42%, rgba(42, 29, 22, 0.16) 100%);
+}
+
+.section-glow--dark::before {
+  background: radial-gradient(30% 36% at 50% 34%, rgba(169, 132, 82, 0.13), transparent 70%);
+}
+
+@keyframes section-drift {
+  0%,
+  100% {
+    transform: translate3d(-1.5%, -1%, 0) scale(1.04);
+  }
+  50% {
+    transform: translate3d(1.5%, 1.5%, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-glow::before {
+    animation: none;
+  }
+}
+
+/* A single, page-wide, static film-grain wash — cheap (one fixed layer, no
+   animation) and reads as "shot on film" rather than "SaaS gradient mesh". */
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* Warm golden-light photo treatment: a consistent grade across every real
+   photo on the site (a slight darken/desaturate/warm), plus a soft amber
+   glow rising from low in the frame with a dark vignette at the edges —
+   evokes a dark room lit by a single warm source without altering the
+   source files themselves. */
+.warm-photo-grade {
+  filter: saturate(0.82) brightness(0.82) contrast(1.08) sepia(0.12);
+}
+
+.warm-photo-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 55% at 50% 78%, rgba(233, 181, 122, 0.5) 0%, rgba(233, 181, 122, 0) 62%),
+    radial-gradient(120% 100% at 50% 50%, transparent 40%, rgba(10, 8, 6, 0.6) 100%);
+  mix-blend-mode: soft-light;
+}
+
+/* A single restrained angled color-block, used once (Designer Picks) as a
+   quiet geometric accent — never a bold graphic statement, just enough to
+   break the rectangle. */
+.diagonal-accent {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--umber);
+  clip-path: polygon(62% 100%, 100% 55%, 100% 100%);
+  opacity: 0.55;
+}
+
+/* Asymmetric photo collage (Workshop Detail): one hero tile plus three
+   supporting tiles, never an even repeating grid. Mobile simplifies to a
+   plain 2x2 so no tile gets too narrow to read. */
+.workshop-collage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "hero tools" "action bench";
+}
+
+@media (min-width: 768px) {
+  .workshop-collage {
+    grid-template-columns: 1.3fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "hero tools tools" "hero action bench";
+  }
+}
