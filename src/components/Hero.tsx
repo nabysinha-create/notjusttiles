@@ -22,7 +22,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex h-screen w-full items-center justify-center overflow-hidden"
+      className="relative flex h-screen w-full items-center justify-start overflow-hidden"
       style={{ backgroundColor: "var(--ink-deep)" }}
     >
       <video
@@ -45,7 +45,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 flex flex-col items-center px-(--content-gutter) text-center">
+      <div className="relative z-10 flex w-full flex-col items-start px-(--content-gutter) text-left">
         <motion.h1
           {...reveal(0.15)}
           className="font-display text-[clamp(2.75rem,7vw,5.5rem)] font-light leading-[1.05] tracking-[-0.02em]"
@@ -67,7 +67,7 @@ export default function Hero() {
 
         <motion.div
           {...reveal(0.9)}
-          className="mt-12 flex flex-col items-center gap-6 sm:flex-row"
+          className="mt-12 flex flex-col items-start gap-6 sm:flex-row sm:items-center"
         >
           <a
             href="#collections"
