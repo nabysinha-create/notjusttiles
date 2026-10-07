@@ -32,7 +32,6 @@ export default function WorkshopCollage() {
             src={tile.src}
             alt={tile.alt}
             fill
-            loading="eager"
             sizes="(max-width: 768px) 50vw, 35vw"
             className="warm-photo-grade object-cover"
           />

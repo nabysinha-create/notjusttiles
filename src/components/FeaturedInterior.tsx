@@ -2,7 +2,7 @@ import Reveal from "./Reveal";
 import ParallaxImage from "./ParallaxImage";
 
 const PANELS = [
-  { letter: "H", src: "/living-collection.png", alt: "Living room styled with warm ambient lighting" },
+  { letter: "H", src: "/living-collection.jpg", alt: "Living room styled with warm ambient lighting" },
   { letter: "O", src: "/bedroom-collection.jpg", alt: "Bedroom styled with layered natural textiles" },
   { letter: "M", src: "/studio-portrait.jpg", alt: "Warmly lit interior nook with ambient lighting" },
   { letter: "E", src: "/dining-collection.jpeg", alt: "Dining room styled with warm wood tones" },

@@ -37,7 +37,7 @@ export const COLLECTIONS: Collection[] = [
     title: "Living",
     description: "Seating and casegoods sized for rooms that host slowly.",
     imageLabel: "Living Collection",
-    image: "/living-collection.png",
+    image: "/living-collection.jpg",
   },
   {
     handle: "dining",
@@ -71,7 +71,7 @@ export const PRODUCTS: Product[] = [
     category: "living",
     price: 3100,
     imageLabel: "Harlow Lounge Chair",
-    image: "/living-collection.png",
+    image: "/living-collection.jpg",
     featured: true,
   },
   {
