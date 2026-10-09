@@ -19,10 +19,10 @@ export default async function ProductPage({
 
   return (
     <>
-      <Nav />
+      <Nav solid />
       <main
         className="grid min-h-screen grid-cols-1 pt-24 md:grid-cols-2 md:pt-0"
-        style={{ backgroundColor: "var(--linen)" }}
+        style={{ backgroundColor: "var(--linen)", color: "var(--ink)" }}
       >
         <div className="relative aspect-[4/5] w-full md:aspect-auto md:h-screen">
           <Image

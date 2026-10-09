@@ -22,30 +22,33 @@ export default function DesignerPicks() {
         </p>
       </Reveal>
 
-      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 px-(--content-gutter) sm:grid-cols-3">
-        {products.map((product, index) => (
-          <Reveal key={product.handle} delay={index * 0.1}>
-            <Link href={`/products/${product.handle}`} className="group block">
-              <ParallaxImage
-                label={product.imageLabel}
-                src={product.image}
-                alt={product.title}
-                sizes="(max-width: 768px) 100vw, 33vw"
-                tone="walnut"
-                className="aspect-[4/5] w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-              />
-              <div className="mt-5 md:opacity-0 md:transition-opacity md:duration-500 md:group-hover:opacity-100">
-                <h3 className="font-body text-sm uppercase tracking-[0.1em]" style={{ color: "var(--linen)" }}>
-                  {product.title}
-                </h3>
-                <p className="mt-1 font-body text-sm" style={{ color: "var(--linen-muted)" }}>
-                  ${product.price.toLocaleString("en-US")}
-                </p>
-              </div>
-            </Link>
-          </Reveal>
-        ))}
-      </div>
+      {/* Mobile: swipeable row with the next card peeking in. sm+: three-column grid. */}
+      <Reveal className="mt-10">
+        <div className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-(--content-gutter) px-(--content-gutter) sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible">
+          {products.map((product) => (
+            <div key={product.handle} className="w-[78%] shrink-0 snap-start sm:w-auto">
+              <Link href={`/products/${product.handle}`} className="group block">
+                <ParallaxImage
+                  label={product.imageLabel}
+                  src={product.image}
+                  alt={product.title}
+                  sizes="(max-width: 640px) 80vw, 33vw"
+                  tone="walnut"
+                  className="aspect-[4/5] w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
+                <div className="mt-5 md:opacity-0 md:transition-opacity md:duration-500 md:group-hover:opacity-100">
+                  <h3 className="font-body text-sm uppercase tracking-[0.1em]" style={{ color: "var(--linen)" }}>
+                    {product.title}
+                  </h3>
+                  <p className="mt-1 font-body text-sm" style={{ color: "var(--linen-muted)" }}>
+                    ${product.price.toLocaleString("en-US")}
+                  </p>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </Reveal>
     </section>
   );
 }

@@ -71,7 +71,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex h-screen w-full items-center justify-start overflow-hidden"
+      className="relative flex h-svh w-full items-center justify-start overflow-hidden"
       style={{ backgroundColor: "var(--ink-deep)" }}
     >
       <video
@@ -87,6 +87,9 @@ export default function Hero() {
         <source src="/video/hero-720.mp4" type="video/mp4" media="(max-width: 768px)" />
         <source src="/video/hero-1080.mp4" type="video/mp4" />
       </video>
+
+      {/* Phones: text covers most of the frame, so darken a touch more for legibility. */}
+      <div aria-hidden className="absolute inset-0 bg-black/25 md:hidden" />
 
       <div
         aria-hidden

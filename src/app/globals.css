@@ -63,14 +63,25 @@ body {
   font-family: var(--font-body);
 }
 
-h1,
-h2,
-h3 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-  text-wrap: balance;
+/* In the base layer so utility classes (font-body, tracking-*) on a heading win. */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+}
+
+/* Horizontal swipe rows on mobile: hide the scrollbar, keep the swipe. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 p {

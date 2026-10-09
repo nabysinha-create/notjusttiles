@@ -33,8 +33,8 @@ export default function Footer() {
       className="section-glow section-glow--dark overflow-hidden"
       style={{ backgroundColor: "var(--charcoal)", color: "var(--linen)" }}
     >
-      <div className="relative grid grid-cols-1 gap-12 px-(--content-gutter) py-(--section-padding) md:grid-cols-[1.3fr_1fr_1fr]">
-        <div>
+      <div className="relative grid grid-cols-2 gap-x-6 gap-y-12 px-(--content-gutter) py-(--section-padding) md:grid-cols-[1.3fr_1fr_1fr] md:gap-12">
+        <div className="col-span-2 md:col-span-1">
           <p className="max-w-[32ch] font-body text-lg leading-relaxed">
             Premium American furniture, curated for homes that value craftsmanship and
             timeless design.

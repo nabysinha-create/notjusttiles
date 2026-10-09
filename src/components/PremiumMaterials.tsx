@@ -21,10 +21,11 @@ export default function PremiumMaterials() {
         </p>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-3 sm:gap-y-6">
         {MATERIALS.map((column, columnIndex) => (
           <Reveal key={columnIndex} delay={columnIndex * 0.1}>
-            <ul className="flex flex-col gap-4">
+            {/* Two-up on phones so the list isn't twelve rows long. */}
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-4 sm:flex sm:flex-col">
               {column.map((material) => (
                 <li
                   key={material}

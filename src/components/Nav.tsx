@@ -5,12 +5,13 @@ import Link from "next/link";
 import { LogoMark } from "./Logo";
 
 const LINKS = [
-  { href: "#collections", label: "Collections" },
-  { href: "#craftsmanship", label: "Craftsmanship" },
-  { href: "#consultation", label: "Book Consultation" },
+  { href: "/#collections", label: "Collections" },
+  { href: "/#craftsmanship", label: "Craftsmanship" },
+  { href: "/#consultation", label: "Book Consultation" },
 ];
 
-export default function Nav() {
+// `solid` keeps the light bar from the start, for pages without a dark hero behind it.
+export default function Nav({ solid = false }: { solid?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -29,7 +30,7 @@ export default function Nav() {
     };
   }, [menuOpen]);
 
-  const inverted = scrolled || menuOpen;
+  const inverted = solid || scrolled || menuOpen;
 
   return (
     <header
