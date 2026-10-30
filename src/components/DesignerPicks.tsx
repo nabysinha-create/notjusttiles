@@ -22,9 +22,9 @@ export default function DesignerPicks() {
         </p>
       </Reveal>
 
-      {/* Mobile: swipeable row with the next card peeking in. sm+: three-column grid. */}
+      {/* Mobile: swipeable row with the next card peeking in. sm: two-by-two grid. lg+: all four in one row. */}
       <Reveal className="mt-10">
-        <div className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-(--content-gutter) px-(--content-gutter) sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible">
+        <div className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-(--content-gutter) px-(--content-gutter) sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:overflow-visible lg:grid-cols-4">
           {products.map((product) => (
             <div key={product.handle} className="w-[78%] shrink-0 snap-start sm:w-auto">
               <Link href={`/products/${product.handle}`} className="group block">
@@ -32,11 +32,11 @@ export default function DesignerPicks() {
                   label={product.imageLabel}
                   src={product.image}
                   alt={product.title}
-                  sizes="(max-width: 640px) 80vw, 33vw"
+                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 50vw, 25vw"
                   tone="walnut"
                   className="aspect-[4/5] w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 />
-                <div className="mt-5 md:opacity-0 md:transition-opacity md:duration-500 md:group-hover:opacity-100">
+                <div className="mt-5">
                   <h3 className="font-body text-sm uppercase tracking-[0.1em]" style={{ color: "var(--linen)" }}>
                     {product.title}
                   </h3>

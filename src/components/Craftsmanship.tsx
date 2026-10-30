@@ -1,5 +1,4 @@
 import Reveal from "./Reveal";
-import ParallaxImage from "./ParallaxImage";
 import WorkshopCollage from "./WorkshopCollage";
 
 export default function Craftsmanship() {
@@ -29,26 +28,36 @@ export default function Craftsmanship() {
         <WorkshopCollage />
       </Reveal>
 
-      <div className="mt-12 grid grid-cols-1 gap-8 px-(--content-gutter) md:grid-cols-2 md:gap-12">
-        <Reveal>
-          <ParallaxImage
-            label="Hand-Finished Joinery"
-            src="/hand-finished-joinery.webp"
-            alt="Craftsperson hand-drilling a joinery detail into raw wood"
-            tone="charcoal"
-            className="aspect-[4/3] w-full"
+      <Reveal className="mt-12 px-(--content-gutter)">
+        <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-video">
+          <video
+            className="warm-photo-grade absolute inset-0 h-full w-full object-cover"
+            src="/video/craftsmanship-new.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Craftspeople at work in the joinery workshop"
           />
-        </Reveal>
-        <Reveal delay={0.1} className="flex flex-col justify-center">
-          <h3 className="font-display text-2xl" style={{ color: "var(--linen)" }}>
-            Three generations of joinery, one standard
-          </h3>
-          <p className="mt-3 max-w-[45ch] font-body" style={{ color: "var(--linen-muted)" }}>
-            Our lead workshop in North Carolina has built case goods since 1978. Nothing
-            leaves the bench until it passes the same hand test it did fifty years ago.
-          </p>
-        </Reveal>
-      </div>
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent"
+          />
+          <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
+            <h3 className="font-display text-2xl md:text-3xl" style={{ color: "var(--linen)" }}>
+              Three generations of joinery, one standard
+            </h3>
+            <p
+              className="mt-3 max-w-[45ch] font-body md:text-lg"
+              style={{ color: "var(--linen-muted)" }}
+            >
+              Our lead workshop in North Carolina has built case goods since 1978. Nothing
+              leaves the bench until it passes the same hand test it did fifty years ago.
+            </p>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }

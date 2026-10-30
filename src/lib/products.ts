@@ -20,7 +20,8 @@ export type Product = {
   category: Category;
   price: number;
   imageLabel: string;
-  image: string;
+  /** Omit until photography exists — a labelled placeholder renders instead. */
+  image?: string;
   featured?: boolean;
 };
 
@@ -30,28 +31,28 @@ export const COLLECTIONS: Collection[] = [
     title: "Bedroom",
     description: "Platform beds, nightstands, and upholstery built for stillness.",
     imageLabel: "Bedroom Collection",
-    image: "/bedroom-collection.jpg",
+    image: "/collection-bedroom.jpg",
   },
   {
     handle: "living",
     title: "Living",
     description: "Seating and casegoods sized for rooms that host slowly.",
     imageLabel: "Living Collection",
-    image: "/living-collection.jpg",
+    image: "/collection-living.jpg",
   },
   {
     handle: "dining",
     title: "Dining",
     description: "Tables and chairs made to outlast the trends around them.",
     imageLabel: "Dining Collection",
-    image: "/dining-collection.jpeg",
+    image: "/collection-dining.jpg",
   },
   {
     handle: "office",
     title: "Office",
     description: "Desks and storage for a study that still feels like home.",
     imageLabel: "Office Collection",
-    image: "/office-collection.jpeg",
+    image: "/collection-office.jpg",
   },
 ];
 
@@ -75,13 +76,30 @@ export const PRODUCTS: Product[] = [
     featured: true,
   },
   {
+    handle: "soleil-velvet-sofa",
+    title: "Soleil Velvet Sofa",
+    category: "living",
+    price: 5900,
+    imageLabel: "Soleil Velvet Sofa",
+    image: "/soleil-velvet-sofa.jpg",
+    featured: true,
+  },
+  {
+    handle: "verdant-open-bookcase",
+    title: "Verdant Open Bookcase",
+    category: "living",
+    price: 3800,
+    imageLabel: "Verdant Open Bookcase",
+    image: "/verdant-bookcase.jpg",
+    featured: true,
+  },
+  {
     handle: "asher-dining-table",
     title: "Asher Dining Table",
     category: "dining",
     price: 6800,
     imageLabel: "Asher Dining Table",
     image: "/dining-collection.jpeg",
-    featured: true,
   },
   {
     handle: "linden-writing-desk",

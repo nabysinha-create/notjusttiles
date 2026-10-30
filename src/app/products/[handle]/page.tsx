@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
+import PlaceholderImage from "@/components/PlaceholderImage";
 import { getProductByHandle, PRODUCTS } from "@/lib/products";
 
 export function generateStaticParams() {
@@ -25,15 +26,21 @@ export default async function ProductPage({
         style={{ backgroundColor: "var(--linen)", color: "var(--ink)" }}
       >
         <div className="relative aspect-[4/5] w-full md:aspect-auto md:h-screen">
-          <Image
-            src={product.image}
-            alt={product.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
-            className="warm-photo-grade object-cover"
-          />
-          <div aria-hidden className="warm-photo-glow" />
+          {product.image ? (
+            <>
+              <Image
+                src={product.image}
+                alt={product.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+                className="warm-photo-grade object-cover"
+              />
+              <div aria-hidden className="warm-photo-glow" />
+            </>
+          ) : (
+            <PlaceholderImage label={product.imageLabel} tone="walnut" className="absolute inset-0" />
+          )}
           <div
             aria-hidden
             className="absolute inset-x-0 top-0 h-32"

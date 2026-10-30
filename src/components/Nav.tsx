@@ -5,9 +5,11 @@ import Link from "next/link";
 import { LogoMark } from "./Logo";
 
 const LINKS = [
+  { href: "/#about", label: "About Us" },
   { href: "/#collections", label: "Collections" },
   { href: "/#craftsmanship", label: "Craftsmanship" },
   { href: "/#consultation", label: "Book Consultation" },
+  { href: "/#contact", label: "Contact Us" },
 ];
 
 // `solid` keeps the light bar from the start, for pages without a dark hero behind it.
@@ -51,7 +53,7 @@ export default function Nav({ solid = false }: { solid?: boolean }) {
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-10 md:flex">
+        <ul className="hidden items-center gap-6 lg:flex xl:gap-10">
           {LINKS.map((link) => (
             <li key={link.href}>
               <a
@@ -69,7 +71,7 @@ export default function Nav({ solid = false }: { solid?: boolean }) {
           onClick={() => setMenuOpen((open) => !open)}
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
-          className="flex h-8 w-8 flex-col items-center justify-center gap-[5px] md:hidden"
+          className="flex h-8 w-8 flex-col items-center justify-center gap-[5px] lg:hidden"
         >
           <span
             className="h-px w-5 transition-transform duration-300 ease-out"
@@ -90,7 +92,7 @@ export default function Nav({ solid = false }: { solid?: boolean }) {
 
       {menuOpen && (
         <div
-          className="flex flex-col gap-8 px-(--content-gutter) pb-12 pt-4 md:hidden"
+          className="flex flex-col gap-8 px-(--content-gutter) pb-12 pt-4 lg:hidden"
           style={{ backgroundColor: "var(--linen)", color: "var(--ink)" }}
         >
           {LINKS.map((link) => (

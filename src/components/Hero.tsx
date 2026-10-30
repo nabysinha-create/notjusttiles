@@ -14,7 +14,8 @@ function fadeIn(video: HTMLVideoElement) {
   video.muted = false;
   const start = performance.now();
   const step = (now: number) => {
-    const t = Math.min((now - start) / 1500, 1);
+    // rAF's timestamp can predate `start`, which would yield a negative volume.
+    const t = Math.min(Math.max((now - start) / 1500, 0), 1);
     video.volume = t * MUSIC_VOLUME;
     if (t < 1) requestAnimationFrame(step);
   };
